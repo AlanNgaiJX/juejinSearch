@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-22 21:24:54
- * @LastEditTime: 2021-03-22 23:48:48
+ * @LastEditTime: 2021-03-23 01:04:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /juejinsearch/src/App.vue
@@ -14,6 +14,7 @@
       v-model:sortBy="sortBy"
       v-model:sizeSetting="sizeSetting"
       :isFetching="isFetching"
+      :layMiddle="isFetching || init"
     ></search-input>
     <article-list-wrap>
       <article-list
@@ -27,7 +28,7 @@
 <script>
 import axios from 'axios'
 import { defineComponent, ref } from 'vue'
-import config from "@/config/index.js";
+import config from '@/config/index.js'
 import SearchInput from '@/components/searchInput.vue'
 import ArticleListWrap from '@/components/articleListWrap.vue'
 import ArticleList from '@/components/articleList.vue'
@@ -52,8 +53,9 @@ export default defineComponent({
     ArticleList,
   },
   setup() {
+    const init = ref(true);
     const articleList = ref([])
-    const sizeSetting = ref(200)
+    const sizeSetting = ref(100)
     const size = ref(20)
     const hasMore = ref(true)
     const cursor = ref('1')
@@ -123,6 +125,7 @@ export default defineComponent({
         }
       })
       isFetching.value = false
+      init.value = false
     }
 
     // 转译列表
@@ -152,7 +155,7 @@ export default defineComponent({
             obj[article.id] = true
             currArr.push(article)
           }
-          return currArr;
+          return currArr
         }, [])
     }
 
@@ -166,6 +169,7 @@ export default defineComponent({
       isFetching,
       sortBy,
       handleSearch,
+      init
     }
   },
 })

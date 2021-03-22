@@ -1,13 +1,13 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-22 21:48:58
- * @LastEditTime: 2021-03-22 23:44:14
+ * @LastEditTime: 2021-03-23 01:03:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /juejinsearch/src/components/searchInput.vue
 -->
 <template>
-  <div class="search-input" :class="{ layMiddle: isFetching }">
+  <div class="search-input" :class="{ layMiddle: layMiddle }">
     <div id="juejinLogo"></div>
     <input
       class="keyword"
