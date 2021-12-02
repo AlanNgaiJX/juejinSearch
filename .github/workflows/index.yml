@@ -33,7 +33,7 @@ jobs:
         uses: actions/setup-node@master
       - run: npm install
       - run: npm run build
-      - run: tar -zcvf release.tgz *
+      - run: cd ./dist tar -zcvf release.tgz *
 
       # # 发布 Release
       - name: Create Release
@@ -55,7 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.HUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release.tgz
+          asset_path: ./dist/release.tgz
           asset_name: release.tgz
           asset_content_type: application/x-tgz
 
